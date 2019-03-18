@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>my</title>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="./lib/bootstrap-validator/css/bootstrapValidator.css">
+    <style>
+        body {
+            background-color: #222D32;
+        }
+        .box{
+            margin-top: 100px;
+        }
+    
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <!-- 登陆 -->
+            <div class="box col-lg-4 col-lg-offset-4">
+                <!-- 面板 -->
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <!-- 标题 -->
+                        <h3 class="panel-title text-center">后台管理系统</h3>
+                    </div>
+                    <!-- 登陆内容 -->
+                    <div class="panel-body">
+                        <!-- 表单 -->
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="usename" class="col-sm-3 control-label">用户名</label>
+                                <div class="col-sm-9">
+                                    <input type="email" class="form-control" id="usename" placeholder="请输入用户名">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Password" class="col-sm-3 control-label">密码</label>
+                                <div class="col-sm-9">
+                                    <input type="password" class="form-control" id="Password" placeholder="请输入密码">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-8">
+                                    <button type="reset" class="btn btn-default">重置</button>
+                                    <button type="submit" class="btn btn-primary pull-right">登陆</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./lib/jquery/jquery.js"></script>
+    <script src="./lib/bootstrap/js/bootstrap.js"></script>
+    <script src="./lib/bootstrap-validator/js/bootstrapValidator.js"></script>
+    <script>
+        console.log($('.panel-body form'))
+        $('.panel-body form').bootstrapValidato({
+
+            // feedbackIcons: {
+            //     valid: 'glyphicon glyphicon-ok',
+            //     invalid: 'glyphicon glyphicon-remove',
+            //     validating: 'glyphicon glyphicon-refresh'
+            // },
+
+        })
+    </script>
+</body>
+
+</html>
