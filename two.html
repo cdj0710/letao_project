@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="./css/commet.css">
     <link rel="stylesheet" href="./lib/nprogress/nprogress.css">
-    <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
@@ -32,9 +31,9 @@
                             <span class="glyphicon glyphicon-list"></span>
                             <span>分类管理</span>
                         </a>
-                        <div class="cate_child" style="display:none">
+                        <div class="cate_child" >
                                 <a  href="one.html">一级分类</a>
-                                <a  href="two.html">二级分类</a>
+                                <a class="current" href="two.html">二级分类</a>
                         </div>
                     </li>
                     <li><a href="product.html">
@@ -58,13 +57,9 @@
                 <!-- 面包屑导航 -->
                 <ol class="breadcrumb">
                     <li><a href="#">管理系统</a></li>
-                    <li class="active">首页</li>
+                    <li><a href="#">分类管理</a></li>
+                    <li class="active">二级分类</li>
                 </ol>
-                <!-- 图标 -->
-                <div class="content_main">
-                    <div class="pull-left"></div>
-                    <div class="pull-right"></div>
-                </div>
             </div>
         </div>
     </div>
@@ -90,9 +85,7 @@
     <script src="./lib/jquery/jquery.js"></script>
     <script src="./lib/bootstrap/js/bootstrap.js"></script>
     <script src="./lib/nprogress/nprogress.js"></script>
-    <script src="./lib/echarts/echarts.min.js"></script>
     <script src="js/commen.js"></script>
-    <script src="./js/index.js"></script>
 </body>
 
 </html>

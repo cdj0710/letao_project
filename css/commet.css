@@ -1,0 +1,122 @@
+html,body{
+    height: 100%;
+}
+ul,ol {
+    list-style: none;
+    padding-left: 0px;
+}
+
+a,
+a:hover,
+a:active,
+a:visited,
+a:link{
+    color: white;
+    text-decoration: none;
+}
+.breadcrumb a{
+    color: #337ab7;
+}
+.aside{
+    width: 180px;
+    height: 100%;
+    background-color: #222D32;
+    position: fixed;
+    text-align: center;
+    color: white;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    transition: all 1s;
+
+}
+.aside.menu_hid{
+    left: -180px;
+}
+.aside .brand{
+    width: 100%;
+    height: 50px;
+    font-size: 24px;
+    line-height: 50px;
+    background-color: #367FA9;
+}
+.aside .cont{
+    width: 100%;
+}
+.aside .cont .user{
+    padding-top: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.aside .cont .user img{
+    width: 80px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+}
+.aside .cont .user p{
+    font-size: 20px;
+    line-height: 50px;
+}
+.aside .cont .list a{
+    width: 100%;
+    padding-left: 40px;
+    display: block;
+    text-align: left;
+    height: 40px;
+    font-size: 14px;
+    line-height: 40px;
+    text-align: left;
+    margin-bottom: 10px;
+    border-left: 3px solid transparent;
+}
+
+.aside .cont .list a.current {
+    background-color: #1D1F21;
+    border-color: #006699;
+}
+.aside .cont .list li .cate_child a{
+  padding-left: 54px;;
+}
+ .main{
+     width: 100%;
+     height: 100%;
+ }
+ .main .top_bar{
+     left: 0;
+     top: 0;
+     width: 100%;
+     height: 50px;
+     padding-left: 180px;
+     background-color: #3C8DBC;
+     position: fixed;
+     z-index: 998;
+     transition: all 1s;
+ }
+ .main .top_bar.menu_hid{
+    padding-left: 0px;
+
+ }
+ .main .top_bar a{
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px;
+}
+ .main .content{
+    padding-left: 180px;
+    padding-top: 50px;
+    height: 1000px;
+    color: red;
+    /* background-color: gray; */
+    transition: all 1s;
+ }
+ .main .content.menu_hid{
+    padding-left: 0px;
+
+ }
+.breadcrumb{
+    margin:20px 0;
+}
+
