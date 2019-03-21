@@ -1,8 +1,11 @@
 //渲染页面数据
 
+// res.rows[iddelete] 1  是正常
 
 // 渲染分页
 var current = 1;
+
+
 rend();
 
 function rend() {
@@ -14,7 +17,6 @@ function rend() {
             page: current,
             pageSize: 5,
         },
-        // res.rows[iddelete] 1  是正常
         success: function (res) {
             console.log(res);
             // 1 渲染表格
@@ -40,6 +42,26 @@ function rend() {
     })
 }
 
+// 点击按钮  发送请求, 修改数据中的状态, 重新渲染表格
+$('.content tbody').on('click','button',function(){
+    // console.log($(this).parent().prev().data('isdelete'))
+    $.ajax({
+    url:'/user/updateUser',
+    type:'post',
+    data:{
+        id:$(this).parent().data('id'),
+        isDelete:$(this).parent().prev().text() =="正常"? 0 :1,
+    },
+    success:function(res){
+      console.log(res);
+      if(res.success){
+          rend();
+        // alert(1)
+      }
+    }
+})
+
+})
 
 
 
