@@ -1,0 +1,15 @@
+.content_main{
+    height: 300px;
+    /* background-color: pink; */
+}
+.content_main table{
+    width: 100%;
+    text-align: center;
+}
+.content_main table thead th {
+    text-align: center;
+}
+
+.content_main table tbody td {
+    vertical-align: middle;
+}

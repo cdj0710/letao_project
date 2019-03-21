@@ -9,32 +9,41 @@
     <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="./css/commet.css">
 </head>
+<style>
+    div{
+        width: 30px;
+        height: 50px;
+        border: 1px solid #000;
+        
+    }
+    span{
+        vertical-align: middle;
+    }
+</style>
 
 <body>
 
     <!-- 模态框 -->
-    <div id="myModal" class="modal fade" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Modal title</h4>
-                </div>
-                <div class="modal-body">
-                    <p>One fine body&hellip;</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+    <div>
+        <button>按钮</button>
+    </div>
 
     <script src="./lib/jquery/jquery.js"></script>
     <script src="./lib/bootstrap/js/bootstrap.js"></script>
     <script src="js/commen.js"></script>
     <script>
+      
+        function a (){
+            var current = 1;
+            console.log(current,'表格要渲染的页数');
+            $('button').click(function(){
+                current = 10;
+              a();
+            })
+           
+        }
+        a();
+        
     </script>
 </body>
 

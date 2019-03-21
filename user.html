@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>user</title>
     <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="./css/commet.css">
     <link rel="stylesheet" href="./lib/nprogress/nprogress.css">
+    <link rel="stylesheet" href="./css/commet.css">
+    <link rel="stylesheet" href="./css/user.css">
 </head>
 
 <body>
@@ -32,8 +33,8 @@
                             <span>分类管理</span>
                         </a>
                         <div class="cate_child" style="display:none">
-                                <a  href="one.html">一级分类</a>
-                                <a  href="two.html">二级分类</a>
+                            <a href="one.html">一级分类</a>
+                            <a href="two.html">二级分类</a>
                         </div>
                     </li>
                     <li><a href="product.html">
@@ -59,7 +60,29 @@
                     <li><a href="#">管理系统</a></li>
                     <li class="active">首页</li>
                 </ol>
+                <div class="content_main ">
+                    <!-- 表格 -->
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width :10%">序号</th>
+                                <th style="width:20%">用户名</th>
+                                <th style="width:30%">手机号</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- 模板 -->
+                        </tbody>
+                    </table>
+                    <!-- 分页 -->
+                    <ul id="pagintor">
+
+                    </ul>
+                </div>
             </div>
+
         </div>
     </div>
     <!-- 模态框 -->
@@ -80,11 +103,32 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-          
+
     <script src="./lib/jquery/jquery.js"></script>
     <script src="./lib/bootstrap/js/bootstrap.js"></script>
     <script src="./lib/nprogress/nprogress.js"></script>
+    <script src="./lib/artTemplate/template-web.js"></script>
+    <script src="./lib/bootstrap-paginator/bootstrap-paginator.js"></script>
     <script src="js/commen.js"></script>
+    <script src="js/user.js"></script>
+    <!-- 模板引擎 -->
+    <script type="text/html" id = "temp1">
+        {{each rows v i }}
+        <tr>
+            <td>{{(page -1)*size + i +1 }}</td>
+            <td>{{v.username}}</td>
+            <td>{{v.mobile}}</td>
+            <td>{{v.isDelete == 1? '正常' : '禁用' }}</td>
+            <td>
+                {{if v.isDelete}}
+                <button class="btn btn-danger">禁用</button>
+                {{else}}
+                <button class="btn btn-success">启用</button>
+                {{/if}}
+            </td>
+        </tr>
+        {{/each}}
+    </script>
 </body>
 
 </html>

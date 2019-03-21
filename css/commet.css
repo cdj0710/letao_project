@@ -108,7 +108,7 @@ a:link{
     padding-left: 180px;
     padding-top: 50px;
     height: 1000px;
-    color: red;
+    /* color: red; */
     /* background-color: gray; */
     transition: all 1s;
  }
