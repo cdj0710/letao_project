@@ -33,3 +33,63 @@ function rend(){
 }
 rend();
 
+// 点击按钮, 添加分类模态框显示
+$('.content-main button').on('click',function(){
+//   alert(1)
+$('#myModal2').modal('show');
+})
+
+
+//表单验证  不为空
+$('#myModal2 form').bootstrapValidator({
+    //2. 指定校验时的图标显示，默认是bootstrap风格
+    feedbackIcons: {
+      valid: 'glyphicon glyphicon-ok',
+      invalid: 'glyphicon glyphicon-remove',
+      validating: 'glyphicon glyphicon-refresh'
+    },
+    //3. 指定校验字段
+    fields: {
+      //校验用户名，对应name表单的name属性
+      categoryName: {
+        validators: {
+          //不能为空
+          notEmpty: {
+            message: '用户名不能为空'
+          },
+        }
+      },
+    }
+  
+  });
+
+
+//   给验证成功以后注册事件
+$("#myModal2 form").on('success.form.bv', function (e) {
+    e.preventDefault();
+    var text = $('#myModal2 form input').val()
+    console.log(text)
+    //使用ajax请求添加分类
+    $.ajax({
+        url:'/category/addTopCategory',
+        type:'post',
+        data:{
+            categoryName:text,
+        },
+        success:function(res){
+        //   console.log(res)
+            if(res.success){
+                // 删除字段内容及验证信息
+                $('#myModal2 form').data('bootstrapValidator').resetField('categoryName',true);//重置表单，并且会隐藏所有的错误提示和图标
+                // 关闭模态框
+                $('#myModal2').modal('hide');
+                // 重新渲染
+                rend();
+            }
+        }
+    })
+    
+});
+
+
+
