@@ -29,3 +29,72 @@ $.ajax({
 })
 
 }
+
+// 点击按钮
+// 模态框显示
+$('.content button').on('click',function(){
+  // alert(1)
+  $('#myModal2').modal('show');
+  // 发送一级分类的请求,进行模板引擎的渲染
+  $.ajax({
+    url:'/category/queryTopCategoryPaging',
+    type:'get',
+    data:{
+      page:1,
+      pageSize:100,
+    },
+    success:function(res){
+      console.log(res);
+      
+      $('.dropdown-menu').html(template('temp2',res));
+    }
+  })
+})
+
+// 给一级菜单中的每一li添加事件, 点击获取该li的文字赋值给 下拉菜单的文字
+$('.dropdown-menu').on('click','li',function(){
+alert(1);
+$('#one_btn').text($(this).text() +'<span class="caret"></span>')
+})
+
+// 添加二级分类模态框的表单校验
+$('#myModal2 form').bootstrapValidator({
+
+  //2. 指定校验时的图标显示，默认是bootstrap风格
+  feedbackIcons: {
+    valid: 'glyphicon glyphicon-ok',
+    invalid: 'glyphicon glyphicon-remove',
+    validating: 'glyphicon glyphicon-refresh'
+  },
+
+  //3. 指定校验字段
+  fields: {
+    //校验用户名，对应name表单的name属性
+    categoryId: {
+      validators: {
+        //不能为空
+        notEmpty: {
+          message: '请输入一级分类'
+        },
+        //长度校验
+      }
+    },
+    brandName:{
+      validators: {
+        //不能为空
+        notEmpty: {
+          message: '请输入二级分类'
+        },
+      }
+    },
+    brandLogo:{
+      validators: {
+        //不能为空
+        notEmpty: {
+        message: '请上传图片'
+        },
+      }
+    }
+  }
+
+});
