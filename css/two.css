@@ -1,0 +1,9 @@
+.content button{
+    margin-bottom: 20px;
+}
+.content table th{
+    text-align: center;
+}
+.content table tbody tr td{
+    vertical-align: middle;
+}

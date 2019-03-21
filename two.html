@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>two</title>
     <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="./css/commet.css">
     <link rel="stylesheet" href="./lib/nprogress/nprogress.css">
+    <link rel="stylesheet" href="./css/two.css">
 </head>
 
 <body>
@@ -60,6 +61,23 @@
                     <li><a href="#">分类管理</a></li>
                     <li class="active">二级分类</li>
                 </ol>
+                <button class="btn btn-default">添加分类</button>
+                <!-- 表格 -->
+                <table class="table table-bordered table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th width="10%">序号</th>
+                            <th width="30%">一级分类名称</th>
+                            <th width="30%">二级分类名称</th>
+                            <th>二级分类logo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 模板 -->
+                    </tbody>
+                </table>
+                <!-- 分页 -->
+                <ul id="pagintor"></ul>
             </div>
         </div>
     </div>
@@ -85,7 +103,20 @@
     <script src="./lib/jquery/jquery.js"></script>
     <script src="./lib/bootstrap/js/bootstrap.js"></script>
     <script src="./lib/nprogress/nprogress.js"></script>
+    <script src="./lib/artTemplate/template-web.js"></script>
+    <script src="./lib/bootstrap-paginator/bootstrap-paginator.js"></script>
     <script src="js/commen.js"></script>
+    <script src="js/two.js"></script>
+    <script type="text/html" id='temp'>
+        {{each rows v i}}
+        <tr>
+                <td>{{(page-1)*size + i + 1}}</td>
+                <td>{{v.categoryName}}</td>
+                <td>{{v.brandName}}</td>
+                <td><img width="90px" src="{{v.brandLogo}}" alt=""></td>
+            </tr>
+        {{/each}}
+    </script>
 </body>
 
 </html>
