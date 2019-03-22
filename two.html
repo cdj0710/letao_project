@@ -109,14 +109,13 @@
                     <h4 class="modal-title">添加分类</h4>
                 </div>
                 <!-- 表单校验 -->
-                <form>
+                <form id="add_sec">
                     <div class="modal-body">
                         <!-- 表单主体内容 -->
                         <div class="form-group">
                             <div class="btn-group" name="categoryId">
-                                <button  id="one_btn" type="button" class="btn btn-default dropdown-toggle"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">请选择一级分类<span
-                                        class="caret"></span>
+                                <button id="one_btn" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">请选择一级分类<span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
                                     <!-- 模板引擎 -->
@@ -129,14 +128,14 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="请输入二级分类" class="form-control" name="brandName">
+                            <input id="brandName" type="text" placeholder="请输入二级分类" class="form-control" name="brandName">
                         </div>
                         <div class="form-group">
-                            <label for="file" class="btn btn-default">上传图片</label>
-                            <input type="file" id="file" style="display:none">
+                            <label for="file" class="btn btn-default file_btn">上传图片</label>
+                            <input type="file" id="file" name="file" style="display:none">
                         </div>
                         <div class="form-group">
-                            <img src="images/none.png" alt="" width="100" name="brandLogo">
+                            <img src="images/none.png" alt="" width="100" name="brandLogo" id="logo_img">
                         </div>
                     </div>
                     <div class="modal-footer">

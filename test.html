@@ -5,23 +5,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>一级分类</title>
+    <title>test</title>
     <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="./lib/bootstrap-validator/css/bootstrapValidator.css">
     <link rel="stylesheet" href="./lib/nprogress/nprogress.css">
     <link rel="stylesheet" href="./css/commet.css">
     <link rel="stylesheet" href="./css/one.css">
+    <style>
+
+    </style>
 </head>
 
 <body>
-  <form>
-      
-  </form>
-   
-    
+    <form>
+        <div class="form-group">
+            <input type="text" name="username"  autocomplete="off" class="form-control">
+        </div>
+        <div class="form-group">
+            <input type="password" name="password"  autocomplete="off" class="form-control">
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary">
+        </div>
+    </form>
+
+    <!-- <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputFile">File input</label>
+              <input type="file" id="exampleInputFile">
+              <p class="help-block">Example block-level help text here.</p>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox"> Check me out
+              </label>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form> -->
+
     <script src="./lib/jquery/jquery.js"></script>
     <script src="./lib/bootstrap/js/bootstrap.js"></script>
     <script src="./lib/nprogress/nprogress.js"></script>
     <script src="./lib/bootstrap-paginator/bootstrap-paginator.js"></script>
+    <script src="./lib/bootstrap-validator/js/bootstrapValidator.js"></script>
     <script src="./lib/artTemplate/template-web.js"></script>
     <script src="js/commen.js"></script>
     <!-- 模板引擎 -->
@@ -29,7 +63,42 @@
 
     </script>
     <script>
- 
+        // console.log($('form'))
+        $('form').bootstrapValidator({
+            //2. 指定校验时的图标显示，默认是bootstrap风格
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+
+            //3. 指定校验字段
+            fields: {
+                username: {
+                    validators: {
+                        //不能为空
+                        notEmpty: {
+                            message: '请输入二级分类'
+                        },
+                        stringLength:{
+                            min:3,
+                            max:10,
+                            message:'字数3-10'
+                        }
+                    }
+                },
+                password: {
+                    validators: {
+                        //不能为空
+                        notEmpty: {
+                            message: '请输入二级分类'
+                        },
+                    }
+                },
+            }
+        })
+
+
 
     </script>
 </body>

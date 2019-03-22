@@ -31,7 +31,7 @@ $.ajax({
 }
 
 // 点击按钮
-// 模态框显示
+// 模态框显示 发送请求, 渲染li
 $('.content button').on('click',function(){
   // alert(1)
   $('#myModal2').modal('show');
@@ -45,7 +45,7 @@ $('.content button').on('click',function(){
     },
     success:function(res){
       console.log(res);
-      
+      // 请求成功, 渲染下拉菜单列表
       $('.dropdown-menu').html(template('temp2',res));
     }
   })
@@ -53,13 +53,14 @@ $('.content button').on('click',function(){
 
 // 给一级菜单中的每一li添加事件, 点击获取该li的文字赋值给 下拉菜单的文字
 $('.dropdown-menu').on('click','li',function(){
-alert(1);
-$('#one_btn').text($(this).text() +'<span class="caret"></span>')
+$('#one_btn').attr('data-id',$(this).data('id'));
+$('#one_btn').html($(this).text() +'<span class="caret"></span>');
+
 })
+
 
 // 添加二级分类模态框的表单校验
 $('#myModal2 form').bootstrapValidator({
-
   //2. 指定校验时的图标显示，默认是bootstrap风格
   feedbackIcons: {
     valid: 'glyphicon glyphicon-ok',
@@ -70,15 +71,15 @@ $('#myModal2 form').bootstrapValidator({
   //3. 指定校验字段
   fields: {
     //校验用户名，对应name表单的name属性
-    categoryId: {
-      validators: {
-        //不能为空
-        notEmpty: {
-          message: '请输入一级分类'
-        },
-        //长度校验
-      }
-    },
+    // categoryId: {
+    //   validators: {
+    //     //不能为空
+    //     notEmpty: {
+    //       message: '请输入一级分类'
+    //     },
+    //     //长度校验
+    //   }
+    // },
     brandName:{
       validators: {
         //不能为空
@@ -87,14 +88,51 @@ $('#myModal2 form').bootstrapValidator({
         },
       }
     },
-    brandLogo:{
-      validators: {
-        //不能为空
-        notEmpty: {
-        message: '请上传图片'
-        },
-      }
-    }
+    // brandLogo:{
+    //   validators: {
+    //     //不能为空
+    //     notEmpty: {
+    //     message: '请上传图片'
+    //     },
+    //   }
+    // }
   }
 
+});
+
+// 上传图片获取路径
+$('#file').change(function(){
+  var files = this.files[0];
+  var reader = new FileReader();
+  reader.readAsDataURL(files);
+  reader.onloadend = function(e){
+    $('#logo_img').attr('src',e.target.result)
+  }
+})
+
+$("#add_sec").on('success.form.bv', function (e) {
+  console.log($('#brandName').val(),$('#one_btn').data('id'),$('#logo_img').attr('src'))
+  e.preventDefault();
+  //使用ajax提交逻辑
+  $.ajax({
+    url:'/category/addSecondCategory',
+    type:'post',
+    data:{
+      brandName:$('#brandName').val(),//品牌名称 
+      categoryId:$('#one_btn').data('id'),
+      brandLogo:$('#logo_img').attr('src'),
+    },
+    success:function(res){
+      console.log(res)
+      if(res.success){
+      // 清除表单
+      // $('#myModal2').data('bootstrapValidator').resetField();
+      // $('#myModal2').data('bootstrapValidator').resetForm();
+      // 请求成功, 关闭模态框,
+
+      }
+      
+      // 渲染页面
+    }
+  })
 });
