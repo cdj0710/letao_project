@@ -111,11 +111,13 @@
                 <!-- 表单校验 -->
                 <form id="add_sec">
                     <div class="modal-body">
-                        <!-- 表单主体内容 -->
+                         <!-- 选择一级分类 -->
                         <div class="form-group">
-                            <div class="btn-group" name="categoryId">
+                            <div class="btn-group">
                                 <button id="one_btn" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">请选择一级分类<span class="caret"></span>
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <span class="one_cate">请选择一级分类</span>
+                                    <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
                                     <!-- 模板引擎 -->
@@ -126,16 +128,25 @@
                                                    <li><a href="#">Separated link</a></li> -->
                                 </ul>
                             </div>
+                            <!-- 一级分类id隐藏域-->
+                            <input type="hidden" name="categoryId" class="form-control">
                         </div>
+                        <!-- 品牌名称 -->
                         <div class="form-group">
                             <input id="brandName" type="text" placeholder="请输入二级分类" class="form-control" name="brandName">
                         </div>
+                        <!-- 上传图片 -->
                         <div class="form-group">
-                            <label for="file" class="btn btn-default file_btn">上传图片</label>
-                            <input type="file" id="file" name="file" style="display:none">
+                            <label for="fileupload" class="btn btn-default file_btn">上传图片</label>
+                            <!-- 使用 jQuery-fileupload 插件!!!!-->
+                            <input type="file" id="fileupload" name="pic1" data-url="/category/addSecondCategoryPic"
+                                style="display:none">
                         </div>
+                        <!-- 图片显示 -->
                         <div class="form-group">
-                            <img src="images/none.png" alt="" width="100" name="brandLogo" id="logo_img">
+                            <img src="images/none.png" alt="" width="100" id="logo_img">
+                            <!-- 品牌图片隐藏域 -->
+                            <input type="hidden" name="brandLogo">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -147,6 +158,10 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
     <script src="./lib/jquery/jquery.js"></script>
+    <!-- fileupload 插件引入 -->
+    <script src="./lib/jquery-fileupload/jquery.ui.widget.js"></script>
+    <script src="./lib/jquery-fileupload/jquery.fileupload.js"></script>
+
     <script src="./lib/bootstrap/js/bootstrap.js"></script>
     <script src="./lib/nprogress/nprogress.js"></script>
     <script src="./lib/artTemplate/template-web.js"></script>
@@ -154,13 +169,13 @@
     <script src="./lib/bootstrap-validator/js/bootstrapValidator.js"></script>
     <script src="js/commen.js"></script>
     <script src="js/two.js"></script>
-    <script type="text/html" id='temp'>
+    <script type="text/html" id="temp">
         {{each rows v i}}
         <tr>
                 <td>{{(page-1)*size + i + 1}}</td>
                 <td>{{v.categoryName}}</td>
                 <td>{{v.brandName}}</td>
-                <td><img width="90px" src="{{v.brandLogo}}" alt=""></td>
+                <td><img height="50px" src="{{v.brandLogo}}" alt=""></td>
             </tr>
         {{/each}}
     </script>

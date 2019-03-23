@@ -1,5 +1,6 @@
 var current = 1;
 rend();
+// 渲染页面 分页
 function rend(){
 //  发送ajax获得数据,
 $.ajax({
@@ -30,8 +31,8 @@ $.ajax({
 
 }
 
-// 点击按钮
-// 模态框显示 发送请求, 渲染li
+
+// 模态框显示 一级分类
 $('.content button').on('click',function(){
   // alert(1)
   $('#myModal2').modal('show');
@@ -51,16 +52,22 @@ $('.content button').on('click',function(){
   })
 })
 
-// 给一级菜单中的每一li添加事件, 点击获取该li的文字赋值给 下拉菜单的文字
+// 给一级菜单中的每一li添加事件, 点击获取该li的文字赋值给隐藏input的value
 $('.dropdown-menu').on('click','li',function(){
-$('#one_btn').attr('data-id',$(this).data('id'));
-$('#one_btn').html($(this).text() +'<span class="caret"></span>');
-
+    $('.one_cate').html($(this).text());
+    // 一级分类的id 赋值给 categoryId的value
+    $('[name="categoryId"]').val($(this).data('id'));
+    // js给添加一级分类, 验证只识别手动添加
+    // 添加一级分类后, 手动改变验证状态  bootstrapvalidator的改变状态方法
+    $('#add_sec').data('bootstrapValidator').updateStatus('categoryId','VALID')
 })
 
 
-// 添加二级分类模态框的表单校验
+// 表单校验
 $('#myModal2 form').bootstrapValidator({
+    // 指定不校验的类型 默认隐藏项都不校验
+    // excluded: [':disabled', ':hidden', ':not(:visible)']
+  excluded:[],
   //2. 指定校验时的图标显示，默认是bootstrap风格
   feedbackIcons: {
     valid: 'glyphicon glyphicon-ok',
@@ -71,15 +78,14 @@ $('#myModal2 form').bootstrapValidator({
   //3. 指定校验字段
   fields: {
     //校验用户名，对应name表单的name属性
-    // categoryId: {
-    //   validators: {
-    //     //不能为空
-    //     notEmpty: {
-    //       message: '请输入一级分类'
-    //     },
-    //     //长度校验
-    //   }
-    // },
+    categoryId: {
+      validators: {
+        //不能为空
+        notEmpty: {
+          message: '请输入一级分类'
+        },
+      }
+    },
     brandName:{
       validators: {
         //不能为空
@@ -88,51 +94,53 @@ $('#myModal2 form').bootstrapValidator({
         },
       }
     },
-    // brandLogo:{
-    //   validators: {
-    //     //不能为空
-    //     notEmpty: {
-    //     message: '请上传图片'
-    //     },
-    //   }
-    // }
+    brandLogo:{
+      validators: {
+        //不能为空
+        notEmpty: {
+        message: '请上传图片'
+        },
+      }
+    }
   }
 
 });
 
-// 上传图片获取路径
-$('#file').change(function(){
-  var files = this.files[0];
-  var reader = new FileReader();
-  reader.readAsDataURL(files);
-  reader.onloadend = function(e){
-    $('#logo_img').attr('src',e.target.result)
+//! 使用fileupload插件可以在文件上传的时候自动拿到路径
+$('#fileupload').fileupload({
+  // 文件上传的自调用函数
+  done:function(e,data){
+    // data.result.picAddr 上传后的图片地址
+    var url = data.result.picAddr;
+    $('#logo_img').attr('src',url) // 图片回显
+    
+    $('[name="brandLogo"]').val(url)// 给图片隐藏域的input赋值
+    // 添加图片后, 手动修改校验状态
+    $('#add_sec').data('bootstrapValidator').updateStatus('brandLogo','VALID')
+
   }
 })
 
+// 表单验证成功
 $("#add_sec").on('success.form.bv', function (e) {
-  console.log($('#brandName').val(),$('#one_btn').data('id'),$('#logo_img').attr('src'))
+  // 阻止默认提交行为
   e.preventDefault();
-  //使用ajax提交逻辑
+  console.log($('#add_sec').serialize())
+  //使用ajax提交数据
   $.ajax({
     url:'/category/addSecondCategory',
     type:'post',
-    data:{
-      brandName:$('#brandName').val(),//品牌名称 
-      categoryId:$('#one_btn').data('id'),
-      brandLogo:$('#logo_img').attr('src'),
-    },
+    data:$('#add_sec').serialize(),
     success:function(res){
       console.log(res)
       if(res.success){
       // 清除表单
-      // $('#myModal2').data('bootstrapValidator').resetField();
-      // $('#myModal2').data('bootstrapValidator').resetForm();
+      $('#myModal2 #add_sec').data('bootstrapValidator').resetForm(true);
       // 请求成功, 关闭模态框,
-
+      $('#myModal2').modal('hide')
       }
-      
       // 渲染页面
+      rend();
     }
   })
 });

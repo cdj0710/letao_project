@@ -17,7 +17,9 @@
 </head>
 
 <body>
-    <form>
+    <input type="file" >
+    <img src="" alt="">
+    <!-- <form>
         <div class="form-group">
             <input type="text" name="username"  autocomplete="off" class="form-control">
         </div>
@@ -27,7 +29,7 @@
         <div class="form-group">
             <input type="submit" class="btn btn-primary">
         </div>
-    </form>
+    </form> -->
 
     <!-- <form>
             <div class="form-group">
@@ -63,43 +65,53 @@
 
     </script>
     <script>
-        // console.log($('form'))
-        $('form').bootstrapValidator({
-            //2. 指定校验时的图标显示，默认是bootstrap风格
-            feedbackIcons: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },
+        // // console.log($('form'))
+        // $('form').bootstrapValidator({
+        //     //2. 指定校验时的图标显示，默认是bootstrap风格
+        //     feedbackIcons: {
+        //         valid: 'glyphicon glyphicon-ok',
+        //         invalid: 'glyphicon glyphicon-remove',
+        //         validating: 'glyphicon glyphicon-refresh'
+        //     },
 
-            //3. 指定校验字段
-            fields: {
-                username: {
-                    validators: {
-                        //不能为空
-                        notEmpty: {
-                            message: '请输入二级分类'
-                        },
-                        stringLength:{
-                            min:3,
-                            max:10,
-                            message:'字数3-10'
-                        }
-                    }
-                },
-                password: {
-                    validators: {
-                        //不能为空
-                        notEmpty: {
-                            message: '请输入二级分类'
-                        },
-                    }
-                },
-            }
-        })
+        //     //3. 指定校验字段
+        //     fields: {
+        //         username: {
+        //             validators: {
+        //                 //不能为空
+        //                 notEmpty: {
+        //                     message: '请输入二级分类'
+        //                 },
+        //                 stringLength:{
+        //                     min:3,
+        //                     max:10,
+        //                     message:'字数3-10'
+        //                 }
+        //             }
+        //         },
+        //         password: {
+        //             validators: {
+        //                 //不能为空
+        //                 notEmpty: {
+        //                     message: '请输入二级分类'
+        //                 },
+        //             }
+        //         },
+        //     }
+        // })
 
 
 
+    </script>
+    <script>
+         $('input').change(function() {
+        // 获取被选中的第一个图片
+        var file = this.files[0];
+        // 创建一个指向图片对象的地址
+        var url = URL.createObjectURL( file );
+        // 显示
+        $('img').attr("src", url);
+      });
     </script>
 </body>
 
