@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>商品</title>
     <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="./lib/bootstrap-validator/css/bootstrapValidator.css">
     <link rel="stylesheet" href="./lib/nprogress/nprogress.css">
     <link rel="stylesheet" href="./css/commet.css">
     <link rel="stylesheet" href="./css/product.css">
@@ -33,8 +34,8 @@
                             <span>分类管理</span>
                         </a>
                         <div class="cate_child" style="display:none">
-                                <a  href="one.html">一级分类</a>
-                                <a  href="two.html">二级分类</a>
+                            <a href="one.html">一级分类</a>
+                            <a href="two.html">二级分类</a>
                         </div>
                     </li>
                     <li><a href="product.html" class="current">
@@ -61,33 +62,33 @@
                     <li class="active">商品管理</li>
                 </ol>
                 <div class="content-main">
-                        <button class="btn btn-default">添加分类</button>
-                        <!-- 表格 -->
-                        <table class="table table-bordered table-hover text-center">
-                            <thead>
-                                <tr>
-                                    <th width="10%">序号</th>
-                                    <th width="20%">商品名称</th>
-                                    <th width="20%">商品描述</th>
-                                    <th width="10%">商品库存</th>
-                                    <th width="10%">商品尺寸</th>
-                                    <th width="10%">商品状态</th>
-                                    <th>操作</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- 模板 -->
-                            </tbody>
-                        </table>
-                        <!-- 分页 -->
-                        <ul id="pagintor"></ul>
-                    </div>
+                    <button class="btn btn-default">添加分类</button>
+                    <!-- 表格 -->
+                    <table class="table table-bordered table-hover text-center">
+                        <thead>
+                            <tr>
+                                <th width="10%">序号</th>
+                                <th width="25%">商品名称</th>
+                                <th width="25%">商品描述</th>
+                                <th width="10%">商品库存</th>
+                                <th width="10%">商品尺寸</th>
+                                <th width="10%">商品状态</th>
+                                <th width="10%">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- 模板 -->
+                        </tbody>
+                    </table>
+                    <!-- 分页 -->
+                    <ul id="pagintor"></ul>
+                </div>
             </div>
         </div>
     </div>
-    <!-- 模态框 -->
+    <!-- 退出模态框 -->
     <div id="myModal" class="modal fade" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -103,15 +104,92 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-          
+
+    <!-- 添加商品模态框 -->
+    <div id="add_produc" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">添加商品</h4>
+                </div>
+                <!-- 表单验证 -->
+                <form id="produc_form">
+                    <div class="modal-body">
+                        <!-- 选择二级分类 -->
+                        <div class="form-group">
+                            <div class="btn-group">
+                                <button id="two_btn" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <span class="two_cate">请选择二级分类</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <!-- 模板引擎 -->
+                                </ul>
+                            </div>
+                            <!-- 二级分类id隐藏域-->
+                            <input type="hidden" name="brandId" class="form-control">
+                        </div>
+                        <!-- 商品名 -->
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="请输入商品名称" name="proName">
+                        </div>
+                        <!-- 商品描述 -->
+                        <div class="form-group">
+                            <textarea type="text" style="resize:none" rows="3" name="proDesc" class="form-control" placeholder="请输入商品描述"></textarea>
+                        </div>
+                        <!-- 库存 -->
+                        <div class="form-group">
+                            <input type="num" class="form-control" placeholder="请输入商品库存" name="num">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="请输入商品尺码" name="size">
+                        </div>
+                        <div class="form-group">
+                            <input type="num" class="form-control" placeholder="请输入商品原价" name="oldPrice">
+                        </div>
+                        <div class="form-group">
+                            <input type="num" class="form-control" placeholder="请输入商品现价" name="price">
+                        </div>
+                        <!-- 上传图片 -->
+                        <div class="form-group">
+                            <label class="btn btn-default" for="produc_img">上传图片</label>
+                            <!-- 添加图片 -->
+                            <input type="file" id="produc_img" style="display: none" multiple name="pic1" data-url="/product/addProductPic">
+                        </div>
+                        <div class="form-group">
+                            <!-- 图片的显示 -->
+                            <div class="img_box">
+                            <!--图片地址的隐藏域 -->
+                            </div>
+                            <input type="hidden" name="picArr" class="form-control" >
+                        </div>
+
+                        
+                        
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary" id="add_btn">添加</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
     <script src="./lib/jquery/jquery.js"></script>
+    <script src="./lib/jquery-fileupload/jquery.ui.widget.js"></script>
+    <script src="./lib/jquery-fileupload/jquery.fileupload.js"></script>
     <script src="./lib/bootstrap/js/bootstrap.js"></script>
+    <script src="./lib/bootstrap-validator/js/bootstrapValidator.js"></script>
     <script src="./lib/nprogress/nprogress.js"></script>
     <script src="./lib/artTemplate/template-web.js"></script>
     <script src="./lib/bootstrap-paginator/bootstrap-paginator.js"></script>
     <script src="js/commen.js"></script>
     <script src="js/product.js"></script>
-    <!-- 模板 -->
+    <!-- 表格模板 -->
     <script type="text/html" id="temp">
         {{each rows v i }}
         <tr>
@@ -121,9 +199,26 @@
                 <td>{{v.num}}</td>
                 <td>{{v.size}}</td>
                 <td>{{v.statu == 1? '已上架' :'已下架'}}</td>
+                {{if v.statu ==1}}
                 <td><button class= 'btn btn-danger'>下架</button></td>
+                {{else}}
+                <td><button class= 'btn btn-success'>上架</button></td>
+                {{/if}}
             </tr>
         {{/each}}
+    </script>
+    <!-- 二级分类模板 -->
+    <!-- brandLogo: "/upload/brand/a802b860-4d4a-11e9-9402-d1bdecd88ca5.jpg"
+    brandName: "361"
+    categoryId: 5
+    categoryName: "户外管"
+    hot: 1
+    id: 22
+    isDelete: 1 -->
+    <script type="text/html" id="temp2">
+    {{each rows v i}}
+    <li data-id="{{v.id}}"><a href="#">{{v.brandName}}</a></li>
+    {{/each}}
     </script>
 </body>
 
